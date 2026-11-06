@@ -727,7 +727,7 @@ export function formatValue(value: unknown, language: Language): string {
   return String(value)
 }
 
-export const STUDENT_EMAIL = 'estudiante.ejemplo@etec.edu.ar'
+export const STUDENT_EMAIL = 'britanyfonceeca@etec.uba.ar'
 
 export const INITIAL_COMPLETED = [
   'intro-programacion/sumar',

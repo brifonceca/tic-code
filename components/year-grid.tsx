@@ -19,7 +19,7 @@ export function YearGrid() {
           <h2 id="years-title" className="text-xl font-semibold tracking-tight">
             Elegí tu año
           </h2>
-          <p className="text-sm text-muted-foreground">Hacé clic en un año para ver sus materias técnicas.</p>
+          <p className="text-sm text-muted-foreground">Entra a tu año para ver las materias.</p>
         </div>
       </div>
 
