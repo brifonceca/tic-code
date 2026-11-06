@@ -84,13 +84,13 @@ export function PracticeWorkspace({ subjectId, exerciseId }: { subjectId: string
         const test = exercise.tests[index]
         const call = `${exercise.fnName}(${test.args.map((arg) => formatValue(arg, language)).join(', ')})`
         if (result.passed) {
-          lines.push({ type: 'success', text: `✔ Prueba ${index + 1}: ${call}` })
+          lines.push({ type: 'success', text: `PASS  Prueba ${index + 1}: ${call}` })
         } else if (result.error) {
-          lines.push({ type: 'error', text: `✖ Prueba ${index + 1}: ${call} → ${result.error}` })
+          lines.push({ type: 'error', text: `FALLA Prueba ${index + 1}: ${call} → ${result.error}` })
         } else {
           lines.push({
             type: 'error',
-            text: `✖ Prueba ${index + 1}: ${call} → esperado ${formatValue(test.expected, language)}, obtenido ${formatValue(result.actual, language)}`,
+            text: `FALLA Prueba ${index + 1}: ${call} → esperado ${formatValue(test.expected, language)}, obtenido ${formatValue(result.actual, language)}`,
           })
         }
       })
