@@ -2,15 +2,26 @@
 
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { YEARS, getSubjectsByYear } from '@/lib/curriculum'
+import { getSubject } from '@/lib/curriculum'
+import type { AnoApi } from '@/lib/api'
 import { useProgress } from '@/components/progress-provider'
 import { SubjectCard } from '@/components/subject-card'
 import { cn } from '@/lib/utils'
 
-export function YearGrid() {
-  const [selectedYear, setSelectedYear] = useState<number | null>(1)
+// Componente PRESENTACIONAL: no sabe de dónde vienen los datos.
+// Los recibe por props desde app/page.tsx (que los trae del backend).
+export function YearGrid({ anos }: { anos: AnoApi[] }) {
+  const [selectedYear, setSelectedYear] = useState<number | null>(anos[0]?.numero ?? null)
   const { subjectProgress } = useProgress()
-  const selected = YEARS.find((year) => year.number === selectedYear)
+  const selected = anos.find((ano) => ano.numero === selectedYear)
+
+  if (anos.length === 0) {
+    return (
+      <p className="mt-8 rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
+        Todavía no hay años cargados en la base de datos.
+      </p>
+    )
+  }
 
   return (
     <section aria-labelledby="years-title" className="flex flex-col gap-6">
@@ -24,23 +35,25 @@ export function YearGrid() {
       </div>
 
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-6">
-        {YEARS.map((year) => {
-          const subjects = getSubjectsByYear(year.number)
-          const totals = subjects.reduce(
-            (acc, subject) => {
-              const progress = subjectProgress(subject)
+        {anos.map((ano) => {
+          // El progreso sigue siendo mock: lo calculamos con las materias del mock que matchean por slug.
+          const totals = ano.cursos.reduce(
+            (acc, curso) => {
+              const mockSubject = getSubject(curso.slug)
+              if (!mockSubject) return acc
+              const progress = subjectProgress(mockSubject)
               return { done: acc.done + progress.completed, total: acc.total + progress.total }
             },
             { done: 0, total: 0 },
           )
           const percent = totals.total ? Math.round((totals.done / totals.total) * 100) : 0
-          const isSelected = selectedYear === year.number
+          const isSelected = selectedYear === ano.numero
 
           return (
             <button
-              key={year.number}
+              key={ano.id}
               type="button"
-              onClick={() => setSelectedYear(isSelected ? null : year.number)}
+              onClick={() => setSelectedYear(isSelected ? null : ano.numero)}
               aria-expanded={isSelected}
               aria-controls="year-subjects"
               className={cn(
@@ -55,7 +68,7 @@ export function YearGrid() {
                     isSelected ? 'text-primary' : 'text-foreground',
                   )}
                 >
-                  {year.number}°
+                  {ano.numero}°
                 </span>
                 <ChevronDown
                   className={cn('size-4 text-muted-foreground transition-transform', isSelected && 'rotate-180 text-primary')}
@@ -63,15 +76,15 @@ export function YearGrid() {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <span className="text-sm font-medium">{year.label}</span>
-                <span className="text-xs leading-snug text-muted-foreground">{year.focus}</span>
+                <span className="text-sm font-medium">{ano.nombre}</span>
+                {ano.foco && <span className="text-xs leading-snug text-muted-foreground">{ano.foco}</span>}
               </div>
               <div className="flex flex-col gap-1.5">
                 <div className="h-1 w-full overflow-hidden rounded-full bg-muted" aria-hidden="true">
                   <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${percent}%` }} />
                 </div>
                 <span className="font-mono text-[11px] text-muted-foreground">
-                  {percent}% · {subjects.length} materias
+                  {percent}% · {ano.cursos.length} materias
                 </span>
               </div>
             </button>
@@ -83,14 +96,18 @@ export function YearGrid() {
         {selected ? (
           <div className="flex flex-col gap-4 rounded-2xl border border-border bg-card/50 p-4 animate-in fade-in slide-in-from-top-2 md:p-6">
             <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <h3 className="text-lg font-semibold">Materias de {selected.label}</h3>
-              <span className="font-mono text-xs text-muted-foreground">{selected.focus}</span>
+              <h3 className="text-lg font-semibold">Materias de {selected.nombre}</h3>
+              {selected.foco && <span className="font-mono text-xs text-muted-foreground">{selected.foco}</span>}
             </div>
-            <div className="grid gap-3 md:grid-cols-2">
-              {getSubjectsByYear(selected.number).map((subject) => (
-                <SubjectCard key={subject.id} subject={subject} />
-              ))}
-            </div>
+            {selected.cursos.length > 0 ? (
+              <div className="grid gap-3 md:grid-cols-2">
+                {selected.cursos.map((curso) => (
+                  <SubjectCard key={curso.id} curso={curso} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-sm text-muted-foreground">Este año todavía no tiene materias cargadas.</p>
+            )}
           </div>
         ) : (
           <p className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
