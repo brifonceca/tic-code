@@ -13,13 +13,13 @@ export function SubjectCard({ curso }: { curso: CursoApi }) {
 
   // Nombre y descripción vienen de la BASE (curso).
   // Lenguajes, ejercicios y progreso siguen en el MOCK: los buscamos por slug.
-  const mockSubject = getSubject(curso.slug)
+  const mockSubject = getSubject(curso.id)
   const progress = mockSubject ? subjectProgress(mockSubject) : { completed: 0, total: 0, percent: 0 }
-  const isDone = progress.total > 0 && progress.completed === progress.total
+  const isDone = progress.total > 0 && progress.completed === progress.total; 
 
   return (
     <Link
-      href={`/materia/${curso.slug}`}
+      href={`/materia/${curso.id}`}
       className="group flex flex-col gap-5 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
     >
       <div className="flex items-start justify-between gap-4">

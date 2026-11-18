@@ -695,8 +695,27 @@ export function getSubjectsByYear(year: number) {
   return SUBJECTS.filter((subject) => subject.year === year)
 }
 
-export function getSubject(id: string) {
-  return SUBJECTS.find((subject) => subject.id === id)
+
+// Mapeo para conectar los IDs numéricos de la API con los IDs de texto de la currícula
+const ID_MAP: Record<string, string> = {
+  '1': 'intro-programacion',
+  '2': 'logica-algoritmos',
+  '3': 'programacion-1',
+  '4': 'algoritmos-1',
+  '5': 'estructuras-datos-1',
+  '6': 'programacion-2',
+  '7': 'ordenamiento',
+  '8': 'recursividad',
+  '9': 'estructuras-datos-2',
+  '10': 'matrices',
+  '11': 'algoritmos-avanzados',
+  '12': 'grafos',
+}
+
+export function getSubject(id: string | number) {
+  const stringId = String(id)
+  const realId = ID_MAP[stringId] || stringId
+  return SUBJECTS.find((subject) => subject.id === realId)
 }
 
 export function getExercise(subjectId: string, exerciseId: string) {

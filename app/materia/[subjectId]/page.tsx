@@ -18,6 +18,8 @@ export default async function SubjectPage({ params }: { params: Promise<{ subjec
   const { subjectId } = await params
   if (!getSubject(subjectId)) notFound()
 
+    console.log(subjectId)
+
   return (
     <div className="min-h-dvh">
       <SiteHeader />
