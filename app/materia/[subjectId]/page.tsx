@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/site-header'
 import { SubjectOverview } from '@/components/subject-overview'
-import { SUBJECTS, getSubject } from '@/lib/curriculum'
+import {  getSubject } from '@/lib/curriculum'
+import { SUBJECTS } from '@/lib/mocks'
 
 export function generateStaticParams() {
   return SUBJECTS.map((subject) => ({ subjectId: subject.id }))

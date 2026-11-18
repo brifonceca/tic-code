@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/site-header'
 import { PracticeWorkspace } from '@/components/practice/practice-workspace'
-import { SUBJECTS, getExercise } from '@/lib/curriculum'
+import {  getExercise } from '@/lib/curriculum'
+import { SUBJECTS } from '@/lib/mocks'
 
 type Params = Promise<{ subjectId: string; exerciseId: string }>
 

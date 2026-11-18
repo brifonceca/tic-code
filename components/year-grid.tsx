@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { getSubject } from '@/lib/curriculum'
 import type { AnoApi } from '@/lib/api'
@@ -22,6 +22,10 @@ export function YearGrid({ anos }: { anos: AnoApi[] }) {
       </p>
     )
   }
+
+  useEffect(() => {
+    console.log(selected)
+  },[])
 
   return (
     <section aria-labelledby="years-title" className="flex flex-col gap-6">

@@ -3,12 +3,13 @@
 import { useCallback, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import { LANGUAGES, YEARS, getExercise, getStarterCode, formatValue, type Language } from '@/lib/curriculum'
+import { LANGUAGES, getExercise, getStarterCode, formatValue, type Language } from '@/lib/curriculum'
 import { runTests, type TestResult } from '@/lib/runner'
 import { useProgress } from '@/components/progress-provider'
 import { ExercisePanel } from '@/components/practice/exercise-panel'
 import { EditorPanel } from '@/components/practice/editor-panel'
 import type { ConsoleLine } from '@/components/practice/output-console'
+import { YEARS } from '@/lib/mocks'
 
 export type TestStatus = 'pending' | 'running' | 'passed' | 'failed'
 

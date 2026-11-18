@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { ArrowLeft, CheckCircle2, Circle, Play } from 'lucide-react'
-import { LANGUAGES, YEARS, getSubject, type Difficulty } from '@/lib/curriculum'
+import { LANGUAGES, getSubject, type Difficulty } from '@/lib/curriculum'
 import { useProgress } from '@/components/progress-provider'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { cn } from '@/lib/utils'
+import { YEARS } from '@/lib/mocks'
 
 export const DIFFICULTY_STYLES: Record<Difficulty, string> = {
   Fácil: 'border-success/30 bg-success/10 text-success',

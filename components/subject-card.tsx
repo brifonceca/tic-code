@@ -7,6 +7,7 @@ import type { CursoApi } from '@/lib/api'
 import { useProgress } from '@/components/progress-provider'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { useEffect } from 'react'
 
 export function SubjectCard({ curso }: { curso: CursoApi }) {
   const { subjectProgress } = useProgress()
@@ -17,6 +18,7 @@ export function SubjectCard({ curso }: { curso: CursoApi }) {
   const progress = mockSubject ? subjectProgress(mockSubject) : { completed: 0, total: 0, percent: 0 }
   const isDone = progress.total > 0 && progress.completed === progress.total; 
 
+  
   return (
     <Link
       href={`/materia/${curso.id}`}
