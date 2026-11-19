@@ -230,7 +230,7 @@ export const SUBJECTS: Subject[] = [
     id: 'programacion-2',
     year: 3,
     name: 'Algoritmo y Programación',
-    description: 'Procesamiento de cadenas de texto.',
+    description: 'Python, tic80.',
     languages: BOTH,
     defaultLanguage: 'javascript',
     exercises: [
@@ -336,7 +336,7 @@ export const SUBJECTS: Subject[] = [
     id: 'recursividad',
     year: 4,
     name: 'Algoritmos y Estructura de Datos',
-    description: 'Funciones que se llaman a sí mismas.',
+    description: 'Python, tc80.',
     languages: BOTH,
     defaultLanguage: 'python',
     exercises: [
