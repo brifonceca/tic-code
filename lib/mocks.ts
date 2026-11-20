@@ -17,7 +17,7 @@ export const SUBJECTS: Subject[] = [
     id: 'intro-programacion',
     year: 1,
     name: 'Pensamiento Computacional',
-    description: 'Variables, operaciones y tus primeras funciones.',
+    description: 'Lógica de programación por bloques con Scratch, Pilas Bloques y Gobstones.',
     languages: BOTH,
     defaultLanguage: 'python',
     exercises: [
@@ -70,7 +70,7 @@ export const SUBJECTS: Subject[] = [
     id: 'pens-compu',
     year: 2,
     name: 'Pensamiento Computacional',
-    description: 'Ciclos, acumuladores y manejo básico de listas.',
+    description: 'Programación inicial en Python, diseño web con HTML y circuitos con Arduino y Tinkercad',
     languages: BOTH,
     defaultLanguage: 'python',
     exercises: [
@@ -178,7 +178,7 @@ export const SUBJECTS: Subject[] = [
     id: 'estructuras-datos-1',
     year: 3,
     name: 'Tecnología de Control',
-    description: 'Arreglos, búsqueda y manipulación de colecciones.',
+    description: 'Sensores con circuitos en Arduino y Tinkercad.',
     languages: BOTH,
     defaultLanguage: 'javascript',
     exercises: [
@@ -230,7 +230,7 @@ export const SUBJECTS: Subject[] = [
     id: 'programacion-2',
     year: 3,
     name: 'Algoritmo y Programación',
-    description: 'Python, tic80.',
+    description: 'Programación en Python y desarrollo de juegos en TIC-80.',
     languages: BOTH,
     defaultLanguage: 'javascript',
     exercises: [
@@ -284,7 +284,7 @@ export const SUBJECTS: Subject[] = [
     id: 'ordenamiento',
     year: 4,
     name: 'Logica Computacional',
-    description: 'Burbuja, mezcla y verificación de orden.',
+    description: 'Sensores con circuitos en Arduino y Tinkercad.',
     languages: BOTH,
     defaultLanguage: 'javascript',
     exercises: [
@@ -336,7 +336,7 @@ export const SUBJECTS: Subject[] = [
     id: 'recursividad',
     year: 4,
     name: 'Algoritmos y Estructura de Datos',
-    description: 'Python, tc80.',
+    description: 'Programación en Python y desarrollo de juegos en TIC-80.',
     languages: BOTH,
     defaultLanguage: 'python',
     exercises: [
