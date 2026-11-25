@@ -1,3 +1,5 @@
+import { getMockAnosConCursos } from '@/lib/mock-api'
+
 /**
  * Capa de acceso al backend (Spring Boot).
  *
@@ -8,6 +10,12 @@
 // Variable de entorno SIN prefijo NEXT_PUBLIC_: solo existe en el servidor de Next.
 // Está bien así porque la home pide los datos desde un Server Component.
 const API_URL = process.env.BACKEND_URL ?? 'http://localhost:8080'
+
+// Con USE_MOCK_DATA=true el front funciona sin backend ni base de datos.
+// Es explícito a propósito: un fallback automático escondería errores reales del backend.
+export function isMockMode(): boolean {
+  return process.env.USE_MOCK_DATA === 'true'
+}
 
 // --- Tipos: espejo de los DTOs del backend (AnoConCursosResponse / CursosResponse) ---
 
@@ -30,6 +38,8 @@ export type AnoApi = {
 // --- Endpoints ---
 
 export async function getAnosConCursos(): Promise<AnoApi[]> {
+  if (isMockMode()) return getMockAnosConCursos()
+
   const response = await fetch(`${API_URL}/api/anos`, {
     // Siempre datos frescos de la base: no cacheamos.
     cache: 'no-store',

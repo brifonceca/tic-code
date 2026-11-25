@@ -49,7 +49,7 @@ export function getSubjectsByYear(year: number) {
 
 
 // Mapeo para conectar los IDs numéricos de la API con los IDs de texto de la currícula
-const ID_MAP: Record<string, string> = {
+export const ID_MAP: Record<string, string> = {
   '1': 'intro-programacion',
   '3': 'pens-compu',
   '4': 'algoritmos-1',
