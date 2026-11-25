@@ -50,18 +50,18 @@ export function getSubjectsByYear(year: number) {
 
 // Mapeo para conectar los IDs numéricos de la API con los IDs de texto de la currícula
 export const ID_MAP: Record<string, string> = {
-  '1': 'intro-programacion',
+  '1': 'pensam-compu',
   '3': 'pens-compu',
-  '4': 'algoritmos-1',
-  '5': 'estructuras-datos-1',
-  '6': 'programacion-2',
-  '7': 'ordenamiento',
-  '8': 'recursividad',
-  '9': 'estructuras-datos-2',
-  '10': 'matrices',
-  '11': 'algoritmos-avanzados',
+  //'4': 'algoritmos-1',
+  '5': 'tec-control',
+  '6': 'algo-progra',
+  '7': 'log-compu',
+  '8': 'algo-estru-datos',
+  '9': 'dis-software',
+  '10':'progr-web',
+  '11':'algoritmos-avanzados',
   '12': 'grafos',
-  '15': ''
+  '15': 'admin-gestion-bd'
 }
 
 export function getSubject(id: string | number) {

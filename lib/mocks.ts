@@ -14,7 +14,7 @@ const BOTH: Language[] = ['python', 'javascript']
 
 export const SUBJECTS: Subject[] = [
   {
-    id: 'intro-programacion',
+    id: 'pensam-compu',
     year: 1,
     name: 'Pensamiento Computacional',
     description: 'Lógica de programación por bloques con Scratch, Pilas Bloques y Gobstones.',
@@ -118,64 +118,9 @@ export const SUBJECTS: Subject[] = [
       },
     ],
   },
+
   {
-    id: 'algoritmos-1',
-    year: 2,
-    name: 'Algoritmos I',
-    description: 'Problemas clásicos para entrenar la lógica.',
-    languages: BOTH,
-    defaultLanguage: 'python',
-    exercises: [
-      {
-        id: 'fizzbuzz',
-        title: 'FizzBuzz',
-        difficulty: 'Fácil',
-        fnName: 'fizzbuzz',
-        params: ['n'],
-        statement:
-          'Devolvé "Fizz" si n es múltiplo de 3, "Buzz" si es múltiplo de 5, "FizzBuzz" si es múltiplo de ambos y, si no, el número como texto.',
-        hints: ['Chequeá primero el caso de múltiplo de 15.'],
-        tests: [
-          { args: [3], expected: 'Fizz' },
-          { args: [10], expected: 'Buzz' },
-          { args: [30], expected: 'FizzBuzz' },
-          { args: [7], expected: '7' },
-        ],
-      },
-      {
-        id: 'es-primo',
-        title: '¿Es primo?',
-        difficulty: 'Media',
-        fnName: 'es_primo',
-        params: ['n'],
-        statement: 'Devolvé verdadero si n es un número primo. Recordá que 0 y 1 no son primos.',
-        hints: ['Alcanza con probar divisores hasta la raíz cuadrada de n.'],
-        tests: [
-          { args: [2], expected: true },
-          { args: [1], expected: false },
-          { args: [17], expected: true },
-          { args: [21], expected: false },
-        ],
-      },
-      {
-        id: 'fibonacci',
-        title: 'Fibonacci',
-        difficulty: 'Media',
-        fnName: 'fibonacci',
-        params: ['n'],
-        statement: 'Devolvé el n-ésimo número de Fibonacci, donde fibonacci(0) = 0 y fibonacci(1) = 1.',
-        hints: ['Guardá los dos valores anteriores y avanzá en un ciclo.'],
-        tests: [
-          { args: [0], expected: 0 },
-          { args: [1], expected: 1 },
-          { args: [10], expected: 55 },
-          { args: [20], expected: 6765 },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'estructuras-datos-1',
+    id: 'tec-control',
     year: 3,
     name: 'Tecnología de Control',
     description: 'Sensores con circuitos en Arduino y Tinkercad.',
@@ -227,7 +172,7 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'programacion-2',
+    id: 'algo-progra',
     year: 3,
     name: 'Algoritmo y Programación',
     description: 'Programación en Python y desarrollo de juegos en TIC-80.',
@@ -281,7 +226,7 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'ordenamiento',
+    id: 'log-compu',
     year: 4,
     name: 'Logica Computacional',
     description: 'Sensores con circuitos en Arduino y Tinkercad.',
@@ -333,7 +278,7 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'recursividad',
+    id: 'algo-estru-datos',
     year: 4,
     name: 'Algoritmos y Estructura de Datos',
     description: 'Programación en Python y desarrollo de juegos en TIC-80.',
@@ -385,10 +330,10 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'estructuras-datos-2',
+    id: 'dis-software',
     year: 5,
     name: 'Diseño de Software',
-    description: 'Pilas, búsqueda binaria y rotaciones.',
+    description: 'Kotlin, POO, CFL, SpringBoot',
     languages: BOTH,
     defaultLanguage: 'javascript',
     exercises: [
@@ -440,10 +385,10 @@ export const SUBJECTS: Subject[] = [
     ],
   },
   {
-    id: 'matrices',
+    id: 'progr-web',
     year: 5,
     name: 'Programación Web',
-    description: 'Operaciones sobre tablas de datos.',
+    description: 'HTML, CSS, JavaScript, Arrays, React',
     languages: BOTH,
     defaultLanguage: 'python',
     exercises: [
@@ -490,6 +435,73 @@ export const SUBJECTS: Subject[] = [
       },
     ],
   },
+  {
+  id: 'admin-gestion-bd',
+  year: 5,
+  name: 'Administración y Gestión de Bases de Datos',
+  description: 'Consultas SQL y administración de bases de datos.',
+  languages: BOTH,
+  defaultLanguage: 'python',
+  exercises: [
+    {
+      id: 'crear-tabla-usuarios',
+      title: 'Definir tabla con clave primaria',
+      difficulty: 'Fácil',
+      fnName: 'crear_tabla_usuarios',
+      params: ['schema'],
+      statement: 'Escribí la sentencia SQL para crear la tabla `usuarios` con `id` (clave primaria autoincremental), `email` único y `activo` booleano.',
+      hints: ['Usá `CREATE TABLE`, definí `PRIMARY KEY` y agregá la restricción `UNIQUE` en `email`.'],
+      tests: [
+        {
+          args: [
+            "SELECT column_name, is_nullable FROM information_schema.columns WHERE table_name = 'usuarios';",
+          ],
+          expected: [
+            { column_name: 'id', is_nullable: 'NO' },
+            { column_name: 'email', is_nullable: 'NO' },
+            { column_name: 'activo', is_nullable: 'NO' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'filtrar-pedidos-activos',
+      title: 'Consulta con JOIN y filtro',
+      difficulty: 'Media',
+      fnName: 'obtener_pedidos_por_cliente',
+      params: ['db'],
+      statement: 'Consultá el nombre del cliente y el total de sus pedidos confirmados, ordenados del monto mayor al menor.',
+      hints: ['Uní `clientes` con `pedidos` por `cliente_id`, filtrá por estado confirmado y usá `ORDER BY total DESC`.'],
+      tests: [
+        {
+          args: ['seed_pedidos_basico'],
+          expected: [
+            { cliente: 'Lucía Gómez', total: 14500 },
+            { cliente: 'Martín Paz', total: 8200 },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'resumen-ventas-categoria',
+      title: 'Agregación con GROUP BY y HAVING',
+      difficulty: 'Media',
+      fnName: 'ventas_por_categoria',
+      params: ['db'],
+      statement: 'Devolvé cada categoría de producto y la cantidad total de unidades vendidas solo para categorías con más de 10 unidades.',
+      hints: ['Agrupá por categoría con `GROUP BY`, sumá cantidades con `SUM()` y filtrá grupos con `HAVING`.'],
+      tests: [
+        {
+          args: ['seed_ventas_productos'],
+          expected: [
+            { categoria: 'Periféricos', unidades: 24 },
+            { categoria: 'Almacenamiento', unidades: 15 },
+          ],
+        },
+      ],
+    },
+  ],
+},
   {
     id: 'algoritmos-avanzados',
     year: 6,

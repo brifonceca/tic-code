@@ -23,10 +23,6 @@ export function YearGrid({ anos }: { anos: AnoApi[] }) {
     )
   }
 
-  useEffect(() => {
-    console.log(selected)
-  },[])
-
   return (
     <section aria-labelledby="years-title" className="flex flex-col gap-6">
       <div className="flex items-end justify-between gap-4">
